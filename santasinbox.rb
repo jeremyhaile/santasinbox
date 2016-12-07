@@ -26,11 +26,9 @@ post '/message' do
       puts "Dropbox response: #{response}"
     end
 
-  rescue ArgumentError => e
-    message = "ERROR: Please provide your team number, a title, and your photo. For example: 5 Santa Claus"
   rescue => e
     puts "#{e.class}: #{e.message}\n#{e.backtrace.join("\n")}"
-    message = e.message
+    message = "ERROR: Please provide your team number, a title, and your photo. For example: 5 Santa Claus"
   end
 
   puts "Sending message: #{message}"
