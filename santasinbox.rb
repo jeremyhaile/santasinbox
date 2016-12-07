@@ -9,7 +9,7 @@ post '/message' do
   begin
     if text = params["Body"]
       team_number, title = text.strip.split(" ", 2)
-      team_number = team_number.to_i
+      team_number = Integer(team_number)
     end
 
     raise "ERROR: Please provide a title for your image after your team number. For example: 5 Santa Claus"
@@ -26,6 +26,8 @@ post '/message' do
       puts "Dropbox response: #{response}"
     end
 
+  rescue ArgumentError => e
+    message = "ERROR: Please provide your team number and a title. For example: 5 Santa Claus"
   rescue => e
     puts "#{e.class}: #{e.message}\n#{e.backtrace.join("\n")}"
     message = "There was a problem processing your message: #{e.message}"
