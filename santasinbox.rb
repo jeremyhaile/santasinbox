@@ -2,7 +2,7 @@ require 'twilio-ruby'
 require 'sinatra'
 
 post '/message' do
-  puts params.inspect
+  logger.debug "PARAMS: #{params.inspect}"
 
   response = nil
   begin
@@ -22,10 +22,11 @@ post '/message' do
     end
 
   rescue => e
-    puts "Error: #{e}"
+    logger.error "Error: #{e}"
     response = "There was a problem processing your message: #{e}"
   end
 
+  logger.info "Sending response: #{response}"
   twiml = Twilio::TwiML::Response.new do |r|
     r.Message(response)
   end
