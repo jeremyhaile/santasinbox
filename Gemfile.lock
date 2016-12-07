@@ -4,6 +4,7 @@ GEM
     builder (3.2.2)
     dropbox-sdk (1.6.5)
       json
+    json (2.0.2)
     json (2.0.2-java)
     jwt (1.5.6)
     multi_json (1.12.1)
@@ -22,12 +23,16 @@ GEM
 
 PLATFORMS
   java
+  ruby
 
 DEPENDENCIES
   dropbox-sdk
   rack
   sinatra
   twilio-ruby
+
+RUBY VERSION
+   ruby 2.2.4p230
 
 BUNDLED WITH
    1.13.6
