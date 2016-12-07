@@ -6,7 +6,7 @@ post '/message' do
 
   response = nil
   begin
-    if text = params[:message]
+    if text = params["Body"]
       team_number, title = text.strip.split(" ", 2)
       team_number = team_number.to_i
     end
