@@ -30,7 +30,7 @@ post '/message' do
     message = "ERROR: Please provide your team number and a title. For example: 5 Santa Claus"
   rescue => e
     puts "#{e.class}: #{e.message}\n#{e.backtrace.join("\n")}"
-    message = "There was a problem processing your message: #{e.message}"
+    message = e.message
   end
 
   puts "Sending message: #{message}"
