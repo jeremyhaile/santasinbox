@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 gem 'rack'
 gem 'sinatra'
-gem 'twilio'
+gem 'twilio-ruby'
