@@ -1,0 +1,29 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    builder (3.2.2)
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
+    multi_xml (0.6.0)
+    rack (1.6.5)
+    rack-protection (1.5.3)
+      rack
+    sinatra (1.4.7)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    tilt (2.0.5)
+    twilio (3.1.1)
+      builder (>= 2.1.2)
+      httparty (>= 0.8)
+
+PLATFORMS
+  java
+
+DEPENDENCIES
+  rack
+  sinatra
+  twilio
+
+BUNDLED WITH
+   1.13.6
