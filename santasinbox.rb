@@ -3,7 +3,7 @@ require 'dropbox_sdk'
 require 'sinatra'
 
 post '/message' do
-  logger.debug "PARAMS: #{params.inspect}"
+  puts "PARAMS: #{params.inspect}"
 
   response = nil
   begin
@@ -25,11 +25,11 @@ post '/message' do
     end
 
   rescue => e
-    logger.error "#{e.class}: #{e.message}\n#{e.backtrace.join("\n")}"
+    puts "#{e.class}: #{e.message}\n#{e.backtrace.join("\n")}"
     response = "There was a problem processing your message: #{e}"
   end
 
-  logger.info "Sending response: #{response}"
+  puts "Sending response: #{response}"
   twiml = Twilio::TwiML::Response.new do |r|
     r.Message(response)
   end
