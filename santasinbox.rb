@@ -14,6 +14,7 @@ post '/message' do
     response = "Team #:#{team_number}\nTitle: #{title}\nURL: #{media_url}"
 
   rescue => e
+    puts "Error: #{e}"
     response = "There was a problem processing your message"
   end
 
