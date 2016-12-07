@@ -12,7 +12,7 @@ post '/message' do
       team_number = Integer(team_number)
     end
 
-    raise "ERROR: Please provide a title for your image after your team number. For example: 5 Santa Claus"
+    raise "ERROR: Please provide a title for your image after your team number. For example: 5 Santa Claus" unless title && title.length > 0
 
     if params["NumMedia"] == "0"
       message = "ERROR: No image was attached to your message!"
