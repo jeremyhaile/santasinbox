@@ -3,9 +3,9 @@ require 'dropbox_sdk'
 require 'sinatra'
 
 post '/message' do
-  puts "PARAMS: #{params.inspect}"
+  puts "PARAMS: #{params}"
 
-  response = nil
+  message = nil
   begin
     if text = params["Body"]
       team_number, title = text.strip.split(" ", 2)
@@ -14,24 +14,24 @@ post '/message' do
     end
 
     if params["NumMedia"] == "0"
-      response = "No image was attached to your text!"
+      message = "No image was attached to your text!"
     else
       media_url = params["MediaUrl0"]
-      response = "Team #:#{team_number}\nTitle: #{title}\nURL: #{media_url}"
+      message = "Team #:#{team_number}\nTitle: #{title}\nURL: #{media_url}"
 
       file = open(media_url)
       client = DropboxClient.new(ENV['DROPBOX_ACCESS_TOKEN'])
-      response = client.put_file("Team #{team_number}/#{title.gsub(/\s/, '_')}.jpg", file)
+      message = client.put_file("Team #{team_number}/#{title.gsub(/\s/, '_')}.jpg", file)
     end
 
   rescue => e
     puts "#{e.class}: #{e.message}\n#{e.backtrace.join("\n")}"
-    response = "There was a problem processing your message: #{e}"
+    message = "There was a problem processing your message: #{e}"
   end
 
-  puts "Sending response: #{response}"
+  puts "Sending message: #{message}"
   twiml = Twilio::TwiML::Response.new do |r|
-    r.Message(response)
+    r.Message(message)
   end
   twiml.text
 end
