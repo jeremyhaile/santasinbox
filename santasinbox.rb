@@ -10,6 +10,7 @@ post '/message' do
     if text = params["Body"]
       team_number, title = text.strip.split(" ", 2)
       team_number = team_number.to_i
+      title = title.strip
     end
 
     if params["NumMedia"] == "0"
@@ -20,7 +21,7 @@ post '/message' do
 
       file = open(media_url)
       client = DropboxClient.new(ENV['DROPBOX_ACCESS_TOKEN'])
-      response = client.put_file("Team #{team_number}/#{title.underscore}.jpg", file)
+      response = client.put_file("Team #{team_number}/#{title.gsub(/\s/, '_')}.jpg", file)
     end
 
   rescue => e
