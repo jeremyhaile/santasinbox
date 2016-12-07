@@ -1,4 +1,5 @@
 require 'twilio-ruby'
+require 'dropbox_sdk'
 require 'sinatra'
 
 post '/message' do
