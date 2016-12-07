@@ -12,7 +12,7 @@ post '/message' do
       team_number = Integer(team_number)
     end
 
-    raise "ERROR: Please provide a title for your image after your team number. For example: 5 Santa Claus" unless title && title.length > 0
+    raise ArgumentError unless title && title.length > 0
 
     if params["NumMedia"] == "0"
       message = "ERROR: No image was attached to your message!"
@@ -27,7 +27,7 @@ post '/message' do
     end
 
   rescue ArgumentError => e
-    message = "ERROR: Please provide your team number and a title. For example: 5 Santa Claus"
+    message = "ERROR: Please provide your team number, a title, and your photo. For example: 5 Santa Claus"
   rescue => e
     puts "#{e.class}: #{e.message}\n#{e.backtrace.join("\n")}"
     message = e.message
