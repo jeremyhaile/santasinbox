@@ -21,7 +21,8 @@ post '/message' do
 
       file = open(media_url)
       client = DropboxClient.new(ENV['DROPBOX_ACCESS_TOKEN'])
-      message = client.put_file("Team #{team_number}/#{title.gsub(/\s/, '_')}.jpg", file)
+      response = client.put_file("Team #{team_number}/#{title.gsub(/\s/, '_')}.jpg", file)
+      puts "Dropbox response: #{response}"
     end
 
   rescue => e
