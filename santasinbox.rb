@@ -7,7 +7,7 @@ post '/message' do
 
   message = nil
   begin
-    if text = params["Body"]
+    if (text = params["Body"]) && text.length > 0
       team_number, title = text.strip.split(" ", 2)
       team_number = Integer(team_number)
     end
