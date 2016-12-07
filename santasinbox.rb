@@ -11,11 +11,16 @@ post '/message' do
       team_number = team_number.to_i
     end
 
-    response = "Team #:#{team_number}\nTitle: #{title}\nURL: #{media_url}"
+    if params["NumMedia"] == "0"
+      response = "No image was attached to your text!"
+    else
+      media_url = params["MediaUrl0"]
+      response = "Team #:#{team_number}\nTitle: #{title}\nURL: #{media_url}"
+    end
 
   rescue => e
     puts "Error: #{e}"
-    response = "There was a problem processing your message"
+    response = "There was a problem processing your message: #{e}"
   end
 
   twiml = Twilio::TwiML::Response.new do |r|
