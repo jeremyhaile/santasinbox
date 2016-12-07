@@ -18,7 +18,7 @@ post '/message' do
       message = "ERROR: No image was attached to your message!"
     else
       media_url = params["MediaUrl0"]
-      message = "Team #:#{team_number}\nTitle: #{title}\nURL: #{media_url}"
+      message = "Thanks! Got team #{team_number}'s photo '#{title}'"
 
       file = open(media_url)
       client = DropboxClient.new(ENV['DROPBOX_ACCESS_TOKEN'])
