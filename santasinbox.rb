@@ -25,7 +25,7 @@ post '/message' do
     end
 
   rescue => e
-    logger.error "Error: #{e}"
+    logger.error "#{e.class}: #{e.message}\n#{e.backtrace.join("\n")}"
     response = "There was a problem processing your message: #{e}"
   end
 
